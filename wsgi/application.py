@@ -11,8 +11,6 @@ import requests
 from lxml import html
 from urlparse import urlparse
 from bs4 import BeautifulSoup
-import urllib3
-urllib3.disable_warnings()
 
 cherrypy.config.update({'environment': 'embedded'})
 
