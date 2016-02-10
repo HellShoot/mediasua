@@ -1,5 +1,10 @@
 $(document).ready(function(){
    $("#calcular").click(function(){
-        console.log("calculando!");
+       $.post( "calcular", { username: "John", password: "2pm" })
+            .done(function( data ) {
+                alert( "Data Loaded: " + data );
+            });
+
+       console.log("calculando!");
    });
 });

@@ -17,16 +17,22 @@ if cherrypy.__version__.startswith('3.0') and cherrypy.engine.state == 0:
 repo = os.environ['OPENSHIFT_REPO_DIR']
 STATIC_DIR = os.path.join(repo, u"wsgi", u"static")
 
+
 class Root(object):
 
     _cp_config = {'tools.staticdir.on': True,
                   'tools.staticdir.dir': STATIC_DIR,
-                  'tools.staticdir.index': 'index.html',
+                  'tools.staticdir.index': 'index.html'
     }
 
     def index(self):
         return open(os.path.join(STATIC_DIR, u'index.html'))
     index.exposed = True
+    
+    @cherrypy.expose
+    @cherrypy.tools.allow(methods=['POST'])
+    def calcular(self, username, password):
+        return username + password
 
 application = cherrypy.Application(Root(), script_name=None, config=None)
 
