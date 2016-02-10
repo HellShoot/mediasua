@@ -5,6 +5,7 @@ import atexit
 import threading
 import cherrypy
 import os
+import json
 
 import requests
 from lxml import html
@@ -37,7 +38,7 @@ class Root(object):
     @cherrypy.expose
     @cherrypy.tools.allow(methods=['POST'])
     def calcular(self, username, password):
-        return username + password
+        return get_notas(username, password)
 
 
 ## medias
@@ -51,7 +52,13 @@ class Cadeira:
         self.semestre = semestre
 
 
-def notas(username, password):
+class Notas:
+    def __init__(self, cadeiras, media):
+        self.cadeiras = cadeiras
+        self.media = media
+
+
+def get_notas(username, password):
     s = requests.Session()
     r = s.get(url="https://paco.ua.pt/secvirtual/c_historiconotas.asp")
 
@@ -93,6 +100,8 @@ def notas(username, password):
         creditos += cadeira.ects
 
     nota = nota / creditos
+
+    return json.dumps(Notas(cadeiras, nota))
 
 application = cherrypy.Application(Root(), script_name=None, config=None)
 
