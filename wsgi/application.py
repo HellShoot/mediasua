@@ -48,6 +48,7 @@ def get_notas(username, password):
     tree = html.fromstring(r.content)
     o = urlparse(r.url)
 
+    return "ok" + str(username) + password
     url_auth = o.scheme + "://" + o.netloc + tree.body.forms[0].attrib["action"]
     r = s.post(url_auth, data={'j_password': password, 'j_username': username, 'Submeter': 'OK'})
 
@@ -63,12 +64,13 @@ def get_notas(username, password):
     r = s.post(url_auth, data=payload)
     r = s.get("https://paco.ua.pt/secvirtual/c_planocurr.asp")
 
+    return "ok" + str(username) + password
     soup = BeautifulSoup(r.content)
     table = soup.find('table', attrs={'width': '95%', 'align': 'center', 'cellspadding': '2'})
 
     cadeiras = []
 
-    return "ok" + str(r.content) + str(username) + password
+    return "ok" + str(username) + password
 
     for row in table.findAll("tr"):
         cells = row.findAll("td")
