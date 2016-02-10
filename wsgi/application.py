@@ -54,13 +54,13 @@ def get_notas(username, password):
     tree = html.fromstring(r.content)
 
     inputs = tree.xpath("//input")
-    return "ok"
 
     payload = {'RelayState': inputs[0].value, 'SAMLResponse': inputs[1].value}
 
     r = s.post(tree.body.forms[0].attrib["action"], data=payload)
     r = s.get("https://paco.ua.pt/secvirtual/c_planocurr.asp")
 
+    return "ok"
     soup = BeautifulSoup(r.content)
     table = soup.find('table', attrs={'width': '95%', 'align': 'center', 'cellspadding': '2'})
 
