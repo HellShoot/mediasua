@@ -47,7 +47,6 @@ def get_notas(username, password):
 
     tree = html.fromstring(r.content)
     o = urlparse(r.url)
-    return "ok"
 
     url_auth = o.scheme + "://" + o.netloc + tree.body.forms[0].attrib["action"]
     r = s.post(url_auth, data={'j_password': password, 'j_username': username, 'Submeter': 'OK'})
@@ -65,6 +64,7 @@ def get_notas(username, password):
     table = soup.find('table', attrs={'width': '95%', 'align': 'center', 'cellspadding': '2'})
 
     cadeiras = []
+    return "ok"
 
     for row in table.findAll("tr"):
         cells = row.findAll("td")
