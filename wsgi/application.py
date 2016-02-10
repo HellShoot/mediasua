@@ -38,25 +38,7 @@ class Root(object):
     @cherrypy.expose
     @cherrypy.tools.allow(methods=['POST'])
     def calcular(self, username, password):
-        get_notas(username, password)
-        return "ok"
-
-
-## medias
-class Cadeira:
-    def __init__(self, codigo, ano, semestre, nota, nome, ects):
-        self.codigo = codigo
-        self.nota = nota
-        self.nome = nome
-        self.ects = ects
-        self.ano = ano
-        self.semestre = semestre
-
-
-class Notas:
-    def __init__(self, cadeiras, media):
-        self.cadeiras = cadeiras
-        self.media = media
+        return get_notas(username, password)
 
 
 def get_notas(username, password):
@@ -87,22 +69,22 @@ def get_notas(username, password):
         cells = row.findAll("td")
         if len(cells) == 8 and cells[1].text.rstrip().replace("\r\n\t", "") != 'Codigo':
             if len(cells[7].text.rstrip().replace("\r\n\t", "")) != 0:
-                cadeiras += [Cadeira(codigo=int(cells[1].text.rstrip().replace("\r\n\t", "")),
-                                     nome=cells[2].text.rstrip().replace("\r\n\t", ""),
-                                     ano=int(cells[3].text.rstrip().replace("\r\n\t", "")),
-                                     semestre=int(cells[4].text.rstrip().replace("\r\n\t", "")),
-                                     ects=float(cells[6].text.rstrip().replace("\r\n\t", "").replace(",", ".")),
-                                     nota=float(cells[7].text.rstrip().replace("\r\n\t", "").replace(",", ".")))]
+                cadeiras += [{'codigo': int(cells[1].text.rstrip().replace("\r\n\t", "")),
+                             'nome': cells[2].text.rstrip().replace("\r\n\t", ""),
+                             'ano': int(cells[3].text.rstrip().replace("\r\n\t", "")),
+                             'semestre': int(cells[4].text.rstrip().replace("\r\n\t", "")),
+                             'ects':float(cells[6].text.rstrip().replace("\r\n\t", "").replace(",", ".")),
+                             'nota': float(cells[7].text.rstrip().replace("\r\n\t", "").replace(",", "."))}]
     nota = 0.0
     creditos = 0.0
 
     for cadeira in cadeiras:
-        nota += (cadeira.nota * cadeira.ects)
-        creditos += cadeira.ects
+        nota += (cadeira["nota"] * cadeira["ects"])
+        creditos += cadeira["ects"]
 
     nota = nota / creditos
 
-    return json.dumps(Notas(cadeiras, nota))
+    return json.dumps({'cadeiras': cadeiras, 'media': nota})
 
 application = cherrypy.Application(Root(), script_name=None, config=None)
 
