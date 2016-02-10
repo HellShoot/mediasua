@@ -3,3 +3,5 @@ lxml
 requests
 beautifulsoup4
 requests[security]
+urllib3
+certifi
