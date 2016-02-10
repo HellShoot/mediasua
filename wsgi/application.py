@@ -38,7 +38,8 @@ class Root(object):
     @cherrypy.expose
     @cherrypy.tools.allow(methods=['POST'])
     def calcular(self, username, password):
-        return get_notas(username, password).media
+        get_notas(username, password)
+        return "ok"
 
 
 ## medias
