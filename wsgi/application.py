@@ -57,9 +57,12 @@ def get_notas(username, password):
 
     payload = {'RelayState': inputs[0].value, 'SAMLResponse': inputs[1].value}
 
-    return "ok" + tree.body.forms[0].attrib["action"]
+    o = urlparse(r.url)
+    url_auth = o.scheme + "://" + o.netloc + tree.body.forms[0].attrib["action"]
 
-    r = s.post(tree.body.forms[0].attrib["action"], data=payload)
+    return "ok" + url_auth
+
+    r = s.post(url_auth, data=payload)
     r = s.get("https://paco.ua.pt/secvirtual/c_planocurr.asp")
 
     soup = BeautifulSoup(r.content)
