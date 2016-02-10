@@ -28,7 +28,7 @@ class Root(object):
     def index(self):
         return open(os.path.join(STATIC_DIR, u'index.html'))
     index.exposed = True
-    
+
     @cherrypy.expose
     @cherrypy.tools.allow(methods=['POST'])
     def calcular(self, username, password):
