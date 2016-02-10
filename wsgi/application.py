@@ -70,9 +70,9 @@ def get_notas(username, password):
 
     for row in table.findAll("tr"):
         cells = row.findAll("td")
+        return "ok"
         if len(cells) == 8 and cells[1].text.rstrip().replace("\r\n\t", "") != 'Codigo':
             if len(cells[7].text.rstrip().replace("\r\n\t", "")) != 0:
-                return "ok"
                 cadeiras += [{'codigo': int(cells[1].text.rstrip().replace("\r\n\t", "")),
                              'nome': cells[2].text.rstrip().replace("\r\n\t", ""),
                              'ano': int(cells[3].text.rstrip().replace("\r\n\t", "")),
