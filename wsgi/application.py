@@ -4,6 +4,7 @@ sys.stdout = sys.stderr
 import atexit
 import threading
 import cherrypy
+import os
 
 cherrypy.config.update({'environment': 'embedded'})
 
@@ -13,7 +14,7 @@ if cherrypy.__version__.startswith('3.0') and cherrypy.engine.state == 0:
 
 class Root(object):
     def index(self):
-        return 'Hello World!'
+        return open(os.path.join("./static"), "index.html")
     index.exposed = True
 
 application = cherrypy.Application(Root(), script_name=None, config=None)
