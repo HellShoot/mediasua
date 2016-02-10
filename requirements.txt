@@ -2,3 +2,4 @@ CherryPy>=3.2.4
 lxml
 requests
 beautifulsoup4
+requests[security]
