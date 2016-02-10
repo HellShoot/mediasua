@@ -62,12 +62,12 @@ def get_notas(username, password):
 
     r = s.post(url_auth, data=payload)
     r = s.get("https://paco.ua.pt/secvirtual/c_planocurr.asp")
-    return "ok" + url_auth
 
     soup = BeautifulSoup(r.content)
     table = soup.find('table', attrs={'width': '95%', 'align': 'center', 'cellspadding': '2'})
 
     cadeiras = []
+    return "ok"
 
     for row in table.findAll("tr"):
         cells = row.findAll("td")
