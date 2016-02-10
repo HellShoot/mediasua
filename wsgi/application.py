@@ -6,6 +6,11 @@ import threading
 import cherrypy
 import os
 
+import requests
+from lxml import html
+from urlparse import urlparse
+from bs4 import BeautifulSoup
+
 cherrypy.config.update({'environment': 'embedded'})
 
 if cherrypy.__version__.startswith('3.0') and cherrypy.engine.state == 0:
