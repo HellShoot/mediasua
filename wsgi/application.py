@@ -57,8 +57,8 @@ def get_notas(username, password):
 
     payload = {'RelayState': inputs[0].value, 'SAMLResponse': inputs[1].value}
 
-    return "ok"
-    
+    return "ok" + tree.body.forms[0].attrib["action"]
+
     r = s.post(tree.body.forms[0].attrib["action"], data=payload)
     r = s.get("https://paco.ua.pt/secvirtual/c_planocurr.asp")
 
