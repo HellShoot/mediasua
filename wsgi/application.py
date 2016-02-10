@@ -60,9 +60,8 @@ def get_notas(username, password):
     o = urlparse(r.url)
     url_auth = o.scheme + "://" + o.netloc + tree.body.forms[0].attrib["action"]
 
-    return "ok" + url_auth
-
     r = s.post(url_auth, data=payload)
+    return "ok" + url_auth
     r = s.get("https://paco.ua.pt/secvirtual/c_planocurr.asp")
 
     soup = BeautifulSoup(r.content)
