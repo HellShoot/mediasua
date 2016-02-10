@@ -14,7 +14,7 @@ if cherrypy.__version__.startswith('3.0') and cherrypy.engine.state == 0:
 
 class Root(object):
     def index(self):
-        return open("static/index.html", "r").read()
+        return open("./static/index.html", "r").read()
     index.exposed = True
 
 application = cherrypy.Application(Root(), script_name=None, config=None)
