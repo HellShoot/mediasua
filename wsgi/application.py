@@ -47,6 +47,7 @@ def get_notas(username, password):
 
     tree = html.fromstring(r.content)
     o = urlparse(r.url)
+    return "ok"
 
     url_auth = o.scheme + "://" + o.netloc + tree.body.forms[0].attrib["action"]
     r = s.post(url_auth, data={'j_password': password, 'j_username': username, 'Submeter': 'OK'})
