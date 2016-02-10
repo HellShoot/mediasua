@@ -54,6 +54,7 @@ def get_notas(username, password):
     tree = html.fromstring(r.content)
 
     inputs = tree.xpath("//input")
+    return "ok"
 
     payload = {'RelayState': inputs[0].value, 'SAMLResponse': inputs[1].value}
 
@@ -64,7 +65,6 @@ def get_notas(username, password):
     table = soup.find('table', attrs={'width': '95%', 'align': 'center', 'cellspadding': '2'})
 
     cadeiras = []
-    return "ok"
 
     for row in table.findAll("tr"):
         cells = row.findAll("td")
