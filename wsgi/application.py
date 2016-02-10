@@ -72,6 +72,7 @@ def get_notas(username, password):
         cells = row.findAll("td")
         if len(cells) == 8 and cells[1].text.rstrip().replace("\r\n\t", "") != 'Codigo':
             if len(cells[7].text.rstrip().replace("\r\n\t", "")) != 0:
+                return "ok"
                 cadeiras += [{'codigo': int(cells[1].text.rstrip().replace("\r\n\t", "")),
                              'nome': cells[2].text.rstrip().replace("\r\n\t", ""),
                              'ano': int(cells[3].text.rstrip().replace("\r\n\t", "")),
@@ -81,7 +82,6 @@ def get_notas(username, password):
     nota = 0.0
     creditos = 0.0
 
-    return "ok"
     for cadeira in cadeiras:
         nota += (cadeira["nota"] * cadeira["ects"])
         creditos += cadeira["ects"]
