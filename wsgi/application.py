@@ -67,7 +67,6 @@ def get_notas(username, password):
     table = soup.find('table', attrs={'width': '95%', 'align': 'center', 'cellspadding': '2'})
 
     cadeiras = []
-    return "ok"
 
     for row in table.findAll("tr"):
         cells = row.findAll("td")
@@ -82,6 +81,7 @@ def get_notas(username, password):
     nota = 0.0
     creditos = 0.0
 
+    return "ok"
     for cadeira in cadeiras:
         nota += (cadeira["nota"] * cadeira["ects"])
         creditos += cadeira["ects"]
