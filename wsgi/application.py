@@ -84,7 +84,23 @@ def get_notas(username, password):
 
     nota = nota / creditos
 
-    return json.dumps({'cadeiras': cadeiras, 'media': nota})
+    semestres_ano = []
+
+    for cadeira in cadeiras:
+        if {"ano": cadeira["ano"], "semestre": cadeira["semestre"]} not in semestres_ano:
+            semestres_ano += [{"ano": cadeira["ano"], "semestre": cadeira["semestre"]}]
+
+    # notas por semestre e ano
+    for semestre in semestres_ano:
+        semestre["ects"] = 0
+        semestre["nota"] = 0
+        for cadeira in cadeiras:
+            if cadeira["ano"] == semestre["ano"] and cadeira["semestre"] == semestre["semestre"]:
+                semestre["ects"] += cadeira["ects"]
+                semestre["nota"] += (cadeira["nota"] * cadeira["ects"])
+        semestre["nota"] /= semestre["ects"]
+
+    return json.dumps({'cadeiras': cadeiras, 'media': nota, 'semestres': semestres_ano})
 
 application = cherrypy.Application(Root(), script_name=None, config=None)
 
