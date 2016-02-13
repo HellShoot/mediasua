@@ -87,6 +87,11 @@ $(document).ready(function(){
     }
 
    $("#calcular").click(function(){
+       $(this).prop( "disabled", true );
+       $(this).removeClass("btn-success");
+       $(this).addClass("btn-info");
+       $(this).val("Estamos a obter as suas notas!");
+
        $.post( "/calcular", { username: $("#username").val(), password: $("#password").val() })
         .done(function( data ) {
            var notas = JSON.parse(data);
@@ -116,6 +121,16 @@ $(document).ready(function(){
            });
         })
        .fail(function() {
+           $("#calcular").removeClass("btn-info")
+                         .addClass("btn-danger")
+                         .val("Dados errados :(");
+           setTimeout(function(){
+               $("#calcular").removeClass("btn-danger")
+                         .addClass("btn-success")
+                         .val("Calcular!")
+                         .prop( "disabled", false );
+               $("#password").val("");
+            }, 1000);
 
        });
    });
