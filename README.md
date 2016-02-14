@@ -13,6 +13,6 @@ Para quem está preocupado com a segurança da sua password:
 * O website usa HTTPS entre o cliente e a CloudFlare, depois entre a CloudFlare e o OpenShift existe HTTPS com um StartSSL :p
 * Não é guardada nenhuma informação do utilizador, não existe nenhuma base de dados
 * O servidor está alojado no OpenShift numa conta gratuita
-* Para quem não pretende obter a sua média online pode testar a versão só de python: 
+* Para quem não pretende obter a sua média online pode testar a versão só de python: [https://github.com/gipmon/mediasua-python](https://github.com/gipmon/mediasua-python)
 
 Aceita-se contribuições!
