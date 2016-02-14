@@ -1,26 +1,18 @@
-OpenShift-CherryPy
+Medias Universidade de Aveiro
 ---
 
-This is an example that show how to use [CherryPy](http://cherrypy.org/) with [OpenShift](https://www.openshift.com/) and the [mod_wsgi](http://modwsgi.readthedocs.org/en/latest/) components.
+Este pequeno site pretende ajudar quem quer ver a sua média atual sem ter de se preocupar. Também apresenta gráficos sobre a sua evolução nas várias cadeiras que vai tendo ao longo do curso e a evolução por semestre.
 
-To use this examle create a Python Application following the 
-[online examples](https://www.openshift.com/get-started/) or with:
+Com as credênciais do aluno, faz login no PACO e obtem as notas e todos os dados necessários da cadeira (ECTS etc) na página Plano Curricular [https://paco.ua.pt/secvirtual/c_planocurr.asp](https://paco.ua.pt/secvirtual/c_planocurr.asp) depois faz o parse da página e obtem as médias e responde ao pedido que é enviado por JSON pela página.
 
-```
-rhc create-app -a cherrypy -t python-2.7
-```
-Following this you can pull in the code from these examples by using:
+Tecnologias usadas: Python, CherryPy para o servidor, jQuery e HTML.
 
-```
-git remote add quickstart https://github.com/penguinforge/openshift-cherrypy.git
-git fetch quickstart
-git checkout master; git merge --strategy=recursive -X theirs quickstart/master
-git push
-```
+**Segurança:**
 
-This example works like most other WSGI applicaion examples by [defining CherryPy as a dependency](https://github.com/penguinforge/openshift-cherrypy/blob/master/setup.py#L9)
-and then defining the [mod_wsgi application](https://github.com/penguinforge/openshift-cherrypy/blob/master/wsgi/application#L19)
+Para quem está preocupado com a segurança da sua password:
+* O website usa HTTPS entre o cliente e a CloudFlare, depois entre a CloudFlare e o OpenShift existe HTTPS com um StartSSL :p
+* Não é guardada nenhuma informação do utilizador, não existe nenhuma base de dados
+* O servidor está alojado no OpenShift numa conta gratuita
+* Para quem não pretende obter a sua média online pode testar a versão só de python: 
 
-The OpenShift `python` cartridge documentation can be [found here](https://github.com/openshift/origin-server/tree/master/cartridges/openshift-origin-cartridge-python/README.md).
-
-Credit: The magic of this example is provided by [tools.cherrypy](http://tools.cherrypy.org/wiki/ModWSGI)
+Aceita-se contribuições!
