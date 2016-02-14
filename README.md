@@ -5,6 +5,8 @@ Este pequeno site pretende ajudar quem quer ver a sua média atual sem ter de se
 
 Com as credênciais do aluno, faz login no PACO e obtem as notas e todos os dados necessários da cadeira (ECTS etc) na página Plano Curricular [https://paco.ua.pt/secvirtual/c_planocurr.asp](https://paco.ua.pt/secvirtual/c_planocurr.asp) depois faz o parse da página e obtem as médias e responde ao pedido que é enviado por JSON pela página.
 
+Mais info: [https://github.com/gipmon/mediasua/blob/master/wsgi/application.py](https://github.com/gipmon/mediasua/blob/master/wsgi/application.py)
+
 Tecnologias usadas: Python, CherryPy para o servidor, jQuery e HTML.
 
 **Segurança:**
